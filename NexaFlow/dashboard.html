@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - NexaFlow</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="dashboard">
+  <div class="app-layout">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon">N</div>
+        <div class="logo-text">Nexa<span>Flow</span></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Main</div>
+          <div class="nav-item"><a href="dashboard.html" class="nav-link active" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</a></div>
+          <div class="nav-item"><a href="projects.html" class="nav-link" data-page="projects"><span class="nav-icon">📁</span> Projects</a></div>
+          <div class="nav-item"><a href="tasks.html" class="nav-link" data-page="tasks"><span class="nav-icon">✅</span> Tasks</a></div>
+          <div class="nav-item"><a href="calendar.html" class="nav-link" data-page="calendar"><span class="nav-icon">📅</span> Calendar</a></div>
+          <div class="nav-item"><a href="analytics.html" class="nav-link" data-page="analytics"><span class="nav-icon">📈</span> Analytics</a></div>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Account</div>
+          <div class="nav-item"><a href="notifications.html" class="nav-link" data-page="notifications"><span class="nav-icon">🔔</span> Notifications <span class="nav-badge notif-badge-count">3</span></a></div>
+          <div class="nav-item"><a href="profile.html" class="nav-link" data-page="profile"><span class="nav-icon">👤</span> Profile</a></div>
+          <div class="nav-item"><a href="settings.html" class="nav-link" data-page="settings"><span class="nav-icon">⚙️</span> Settings</a></div>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-card" onclick="location.href='profile.html'">
+          <div class="avatar" id="sidebarUserAvatar">J</div>
+          <div class="user-info">
+            <div class="user-name" id="sidebarUserName">John Doe</div>
+            <div class="user-email" id="sidebarUserEmail">john@nexaflow.io</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="main-content">
+      <div class="top-bar">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <div class="page-title">Dashboard</div>
+        <div class="top-bar-actions">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Search..." id="globalSearch">
+          </div>
+          <a href="notifications.html" class="icon-btn" style="text-decoration:none;position:relative">
+            🔔
+            <span class="notif-dot"></span>
+          </a>
+          <div class="avatar" style="width:36px;height:36px;font-size:14px;cursor:pointer" onclick="location.href='profile.html'" id="topBarAvatar">J</div>
+        </div>
+      </div>
+
+      <div class="page-content animate-in">
+        <div class="welcome-banner">
+          <h2 id="welcomeMsg">Good morning, John! 👋</h2>
+          <p>You have 5 tasks in progress and 2 deadlines approaching this week. Let's make today productive!</p>
+          <a href="tasks.html" class="btn-primary" style="display:inline-block">View My Tasks</a>
+        </div>
+
+        <div class="stats-cards">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:rgba(99,102,241,0.12);color:#6366f1">📁</div>
+            <div class="stat-info">
+              <h4 id="totalProjects">4</h4>
+              <p>Total Projects</p>
+              <span class="stat-trend up">↑ 12%</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:rgba(16,185,129,0.12);color:#10b981">✅</div>
+            <div class="stat-info">
+              <h4 id="completedTasks">4</h4>
+              <p>Completed Tasks</p>
+              <span class="stat-trend up">↑ 8%</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:rgba(245,158,11,0.12);color:#f59e0b">⏳</div>
+            <div class="stat-info">
+              <h4 id="pendingTasks">8</h4>
+              <p>Pending Tasks</p>
+              <span class="stat-trend down">↓ 3%</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:rgba(239,68,68,0.12);color:#ef4444">🔥</div>
+            <div class="stat-info">
+              <h4 id="teamMembers">10</h4>
+              <p>Team Members</p>
+              <span class="stat-trend up">↑ 2</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="recent-tasks">
+            <div class="card">
+              <div class="section-header">
+                <h3>Recent Tasks</h3>
+                <a href="tasks.html" class="btn-secondary btn-sm">View All</a>
+              </div>
+              <div id="recentTasksList"></div>
+            </div>
+          </div>
+          <div class="upcoming-deadlines">
+            <div class="card">
+              <div class="section-header">
+                <h3>Upcoming Deadlines</h3>
+                <a href="calendar.html" class="btn-secondary btn-sm">View All</a>
+              </div>
+              <div id="deadlinesList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function initDashboard() {
+      const profile = APP.getProfile();
+      const hour = new Date().getHours();
+      const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+      document.getElementById('welcomeMsg').textContent = `${greeting}, ${profile.name.split(' ')[0]}! 👋`;
+      document.getElementById('topBarAvatar').textContent = profile.name.charAt(0).toUpperCase();
+
+      const tasks = APP.getTasks();
+      const projects = APP.getProjects();
+      document.getElementById('totalProjects').textContent = projects.length;
+      document.getElementById('completedTasks').textContent = tasks.filter(t => t.status === 'done').length;
+      document.getElementById('pendingTasks').textContent = tasks.filter(t => t.status !== 'done').length;
+      document.getElementById('teamMembers').textContent = tasks.reduce((acc, t) => acc + (acc.includes(t.assignee) ? 0 : 1), 0);
+
+      const recentTasks = tasks.filter(t => t.status !== 'done').slice(0, 5);
+      const tasksList = document.getElementById('recentTasksList');
+      tasksList.innerHTML = recentTasks.map(task => `
+        <div class="task-item">
+          <div class="task-check ${task.status === 'done' ? 'checked' : ''}" onclick="this.classList.toggle('checked')">
+            ${task.status === 'done' ? '✓' : ''}
+          </div>
+          <div class="task-details">
+            <div class="task-title">${task.title}</div>
+            <div class="task-meta">${task.tag} • ${task.date}</div>
+          </div>
+          <span class="badge badge-${task.priority === 'high' ? 'danger' : task.priority === 'medium' ? 'warning' : 'info'}">${task.priority}</span>
+        </div>
+      `).join('');
+
+      const events = APP.getEvents().slice(0, 4);
+      const deadlinesList = document.getElementById('deadlinesList');
+      deadlinesList.innerHTML = events.map(event => {
+        const d = new Date(event.date);
+        const day = d.getDate();
+        const month = d.toLocaleString('en', { month: 'short' });
+        return `
+        <div class="deadline-item">
+          <div class="deadline-date">
+            <span class="day">${day}</span>
+            <span class="month">${month}</span>
+          </div>
+          <div class="deadline-info">
+            <div class="deadline-title">${event.title}</div>
+            <div class="deadline-project">${event.time}</div>
+          </div>
+        </div>
+      `;
+      }).join('');
+    }
+    initDashboard();
+  </script>
+</body>
+</html>
